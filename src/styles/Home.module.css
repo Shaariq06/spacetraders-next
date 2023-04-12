@@ -4,14 +4,30 @@
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background-color: #0f0c29;
-    color: #c4d8e2;  
+    background-color: #1F2937;
+    color: #E5E7EB;  
 }
 
-.loginLink {
-    font-size: medium;
+.loginLink, .signupLink{
+    font-size: large;
+    height: 110px;
+    width: 300px;
+    background: #111827;
+    border-radius: 0.25rem;
+    border-width: 1px;
+    border: 1px groove whitesmoke;
+    margin: 12px;
 }
 
-.signupLink {
-    font-size: medium;
+.p {
+    text-align: center;
+}
+
+.a {
+    text-decoration: none;
+    color: #f59e0b;
+}
+
+.div {
+    text-align: center;
 }

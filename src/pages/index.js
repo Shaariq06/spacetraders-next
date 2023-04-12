@@ -9,12 +9,16 @@ export default function Home() {
     <div className={styles.container}>
       <h1>Welcome to SpaceTraders!</h1>
       <div className={styles.loginLink}>
-        <p>Have an account?</p>
-        <a href="login" >Login</a>
+        <p className={styles.p}>Already have an account?</p>
+        <div className={styles.div}> 
+          <a href='login' className={styles.a}>Login</a>
+        </div>
       </div>
       <div className={styles.signupLink}>
-        <p>Are you a new user?</p>
-        <a href="signup" >Signup</a>
+        <p className={styles.p}>New to SpaceTraders?</p>
+        <div className={styles.div}> 
+          <a href='signup' className={styles.a}>Signup</a>
+        </div>
       </div>
     </div>
   )

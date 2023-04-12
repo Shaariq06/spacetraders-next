@@ -4,8 +4,8 @@
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background-color: #0f0c29;
-    color: #c4d8e2;
+    background-color: #1F2937;
+    color: #E5E7EB;
   }
   
   .form {
@@ -13,12 +13,16 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 50%;
+    height: 170px;
+    width: 300px;
     max-width: 500px;
-    margin-top: 2rem;
-    background-color: #3c3b3f;
+    background-color: #111827;
     padding: 2rem;
-    border-radius: 5px;
+    border-width: 1px;
+    border: 1px groove whitesmoke;
+    margin: 12px;
+    border-radius: 0.25rem;
+
   }
   
   .input {
@@ -42,6 +46,6 @@
   }
   
   .button:hover {
-    background-color: #ffc72c;
+    background-color: #f59e0b;
   }
   
