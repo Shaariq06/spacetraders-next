@@ -2,10 +2,11 @@ import React, { useState } from 'react'
 import styles from '../styles/LoginSignup.module.css';
 import { useRouter } from 'next/router';
 
-
 const Login = () => {
 
-  const [token, setToken] = useState("")
+  const router = useRouter();
+
+  const [token, setToken] = useState("");
 
   const options = {
   headers: {
@@ -15,7 +16,8 @@ const Login = () => {
 };
   
   const submitLogin = async () => {
-    const response = await fetch('https://api.spacetraders.io/v2/my/agent', options)
+    await fetch('https://api.spacetraders.io/v2/my/agent', options);
+    router.push('localhost:3000/dashboard');
   }
 
   return (
