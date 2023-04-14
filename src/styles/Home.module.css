@@ -8,6 +8,11 @@
     color: #E5E7EB;  
 }
 
+.h1 {
+    font-family: Prompt;
+    text-align: center;
+}
+
 .loginLink, .signupLink{
     font-size: large;
     height: 110px;
@@ -15,7 +20,7 @@
     background: #111827;
     border-radius: 0.25rem;
     border-width: 1px;
-    border: 1px groove whitesmoke;
+    border: 1px solid gray;
     margin: 12px;
 }
 
@@ -30,4 +35,5 @@
 
 .div {
     text-align: center;
+    box-shadow: 5px ;
 }

@@ -7,7 +7,7 @@ export default function Home() {
 
   return (
     <div className={styles.container}>
-      <h1>Welcome to SpaceTraders!</h1>
+      <h1 className={styles.h1}>Welcome to SpaceTraders!</h1>
       <div className={styles.loginLink}>
         <p className={styles.p}>Already have an account?</p>
         <div className={styles.div}> 
