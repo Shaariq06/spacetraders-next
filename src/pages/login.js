@@ -15,7 +15,7 @@ const Login = () => {
   },
 };
   
-  const submitLogin = async () => {
+  const submitLogin = async (event) => {
     await fetch('https://api.spacetraders.io/v2/my/agent', options);
     router.push('localhost:3000/dashboard');
   }
@@ -25,7 +25,7 @@ const Login = () => {
       <h1 className={styles.title}>Login</h1>
       <div className={styles.main}>
         <div className={styles.login}>
-          <form className={styles.form}>
+          <form className={styles.form} onSubmit={submitLogin}>
             <div>
               <input type="text" placeholder='Username' required className={styles.input} name='username'></input>
             </div>
@@ -33,7 +33,7 @@ const Login = () => {
               <input type="password" placeholder='Token' required className={styles.input} name='token'></input>
             </div>
             <div>
-              <button type='submit' className={styles.btn} onClick={submitLogin}>Login</button>
+              <button type='submit' className={styles.btn}>Login</button>
             </div>
           </form>
           <p>New to Spacetraders? <a className={styles.a}href='signup'>Signup</a></p>
