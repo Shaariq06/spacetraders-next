@@ -4,20 +4,21 @@ import { useRouter } from 'next/router';
 
 const Login = () => {
 
-  const router = useRouter();
+  // const router = useRouter();
 
   const [token, setToken] = useState("");
 
-  const options = {
-  headers: {
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${token}`
-  },
-};
-  
-  const submitLogin = async (event) => {
-    await fetch('https://api.spacetraders.io/v2/my/agent', options);
-    router.push('localhost:3000/dashboard');
+  async function handleSubmit(event) {
+    event.preventDefault();
+    const response = await fetch('https://api.spacetraders.io/v2/my/agent', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ token }),
+    });
+    if (response.ok) {
+      console.log('Login successful!');
+      // router.push('/dashboard');
+    }
   }
 
   return (
@@ -25,12 +26,9 @@ const Login = () => {
       <h1 className={styles.title}>Login</h1>
       <div className={styles.main}>
         <div className={styles.login}>
-          <form className={styles.form} onSubmit={submitLogin}>
+          <form className={styles.form} onSubmit={handleSubmit}>
             <div>
-              <input type="text" placeholder='Username' required className={styles.input} name='username'></input>
-            </div>
-            <div>
-              <input type="password" placeholder='Token' required className={styles.input} name='token'></input>
+              <input type="password" placeholder='Token' required className={styles.input} value={token} onChange={(event) => setToken(event.target.value)}></input>
             </div>
             <div>
               <button type='submit' className={styles.btn}>Login</button>
@@ -44,3 +42,37 @@ const Login = () => {
 }
 
 export default Login
+
+```javascript
+import { useState } from 'react';
+
+export default function Login() {
+  const [token, setToken] = useState('');
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+    const response = await fetch('/api/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ token }),
+    });
+    if (response.ok) {
+      console.log('Login successful!');
+    }
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <label>
+        Token:
+        <input
+          type="text"
+          value={token}
+          onChange={(event) => setToken(event.target.value)}
+        />
+      </label>
+      <button type="submit">Submit</button>
+    </form>
+  );
+}
+```
