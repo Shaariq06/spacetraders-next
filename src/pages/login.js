@@ -4,20 +4,20 @@ import { useRouter } from 'next/router';
 
 const Login = () => {
 
-  // const router = useRouter();
+  const router = useRouter();
 
   const [token, setToken] = useState("");
 
   async function handleSubmit(event) {
     event.preventDefault();
-    const response = await fetch('https://api.spacetraders.io/v2/my/agent', {
-      method: 'POST',
+    const response = await fetch('https://api.spacetraders.io/my/account', {
+      method: 'GET',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ token }),
     });
     if (response.ok) {
       console.log('Login successful!');
-      // router.push('/dashboard');
+      router.push('/dashboard');
     }
   }
 
