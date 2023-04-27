@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import styles from '../styles/LoginSignup.module.css';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 
 const Login = () => {
 
-  const router = useRouter();
+  // const router = React.useRouter();
 
   const [token, setToken] = useState("");
 
@@ -17,7 +17,7 @@ const Login = () => {
     });
     if (response.ok) {
       console.log('Login successful!');
-      router.push('/dashboard');
+      // router.push('/dashboard');
     }
   }
 
