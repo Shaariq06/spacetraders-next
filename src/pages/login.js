@@ -9,30 +9,39 @@ const Login = () => {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    const response = await fetch('https://api.spacetraders.io/my/account', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
-      },
-    });
-    console.log(response);
-    if (response.ok) {
-      console.log('Login successful!');
-      localStorage.setItem('authToken', token); 
-      router.push('/dashboard');
-    } else {
-      console.log('Login failed!');
+    try {
+      const response = await fetch('https://api.spacetraders.io/my/account', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+  
+      if (response.ok) {
+        console.log('Login successful!');
+        localStorage.setItem('authToken', token);
+        router.push('/dashboard');
+      } else {
+        console.log('Login failed!');
+        if (response.status === 401) {
+          console.log('Invalid token');
+        } else {
+          console.log('Error during login');
+        }
+      }
+    } catch (error) {
+      console.error('Error during login:', error);
     }
-  }
+  }  
 
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Login</h1>
       <div className={styles.main}>
         <div className={styles.login}>
-          <form className={styles.form}>
-            <div onSubmit={handleSubmit}>
+          <form className={styles.form} onSubmit={handleSubmit}>
+            <div>
               <input type="password" placeholder='Token' required className={styles.input} value={token} onChange={(event) => setToken(event.target.value)}></input>
             </div>
             <div>
