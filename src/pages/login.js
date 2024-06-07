@@ -1,23 +1,28 @@
 import React, { useState } from 'react'
 import styles from '../styles/LoginSignup.module.css';
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/router';
 
 const Login = () => {
-
-  // const router = React.useRouter();
-
   const [token, setToken] = useState("");
+  const router = useRouter();
+
 
   async function handleSubmit(event) {
     event.preventDefault();
     const response = await fetch('https://api.spacetraders.io/my/account', {
       method: 'GET',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ token }),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
     });
+    console.log(response);
     if (response.ok) {
       console.log('Login successful!');
-      // router.push('/dashboard');
+      localStorage.setItem('authToken', token); 
+      router.push('/dashboard');
+    } else {
+      console.log('Login failed!');
     }
   }
 
@@ -26,8 +31,8 @@ const Login = () => {
       <h1 className={styles.title}>Login</h1>
       <div className={styles.main}>
         <div className={styles.login}>
-          <form className={styles.form} onSubmit={handleSubmit}>
-            <div>
+          <form className={styles.form}>
+            <div onSubmit={handleSubmit}>
               <input type="password" placeholder='Token' required className={styles.input} value={token} onChange={(event) => setToken(event.target.value)}></input>
             </div>
             <div>
@@ -42,37 +47,3 @@ const Login = () => {
 }
 
 export default Login
-
-```javascript
-import { useState } from 'react';
-
-export default function Login() {
-  const [token, setToken] = useState('');
-
-  async function handleSubmit(event) {
-    event.preventDefault();
-    const response = await fetch('/api/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ token }),
-    });
-    if (response.ok) {
-      console.log('Login successful!');
-    }
-  }
-
-  return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Token:
-        <input
-          type="text"
-          value={token}
-          onChange={(event) => setToken(event.target.value)}
-        />
-      </label>
-      <button type="submit">Submit</button>
-    </form>
-  );
-}
-```
